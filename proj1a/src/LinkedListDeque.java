@@ -2,7 +2,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     private final Node<T> head;
     private int size;
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         head = new Node<>(null);
         head.next = head;
         head.prev = head;
@@ -21,16 +21,16 @@ public class LinkedListDeque<T> implements Deque<T> {
         }
     }
 
-    public T getRecursive(int index){
+    public T getRecursive(int index) {
         return geRecursiveHelper(head.next, index);
     }
 
-    public T geRecursiveHelper(Node<T> node, int index){
+    public T geRecursiveHelper(Node<T> node, int index) {
         T value;
         if (index == 0) {
             return node.val;
         }
-        value = geRecursiveHelper(node.next, index-1);
+        value = geRecursiveHelper(node.next, index - 1);
         return value;
     }
 
@@ -70,7 +70,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     public void printDeque() {
         Node<T> node = head.next;
         while (node != head) {
-            System.out.print(node.val + " ");
+            System.out.print(node.val);
             node = node.next;
         }
         System.out.println();
@@ -97,7 +97,7 @@ public class LinkedListDeque<T> implements Deque<T> {
     @Override
     public T get(int index) {
         Node<T> node = head.next;
-        while (index != 0){
+        while (index != 0) {
             node = node.next;
             index -= 1;
         }
@@ -110,7 +110,7 @@ class Node<T> {
     Node<T> next;
     Node<T> prev;
 
-    public Node(T val){
+    Node(T val) {
         this.val = val;
         next = null;
         prev = null;
