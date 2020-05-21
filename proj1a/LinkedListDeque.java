@@ -78,6 +78,9 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T value = head.next.val;
         head.next = head.next.next;
         head.next.prev = head;
@@ -87,6 +90,9 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     @Override
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         T value = head.prev.val;
         head.prev = head.prev.prev;
         head.prev.next = head;

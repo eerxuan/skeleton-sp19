@@ -2,8 +2,8 @@ public class ArrayDeque<T> implements Deque<T> {
     private T[] array;
     private int size;
     private int fullSize;
-    int front;
-    int end;
+    private int front;
+    private int end;
 
     public ArrayDeque() {
         fullSize = 8;
@@ -22,8 +22,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     private void resize(double factor) {
-        fullSize *= factor;
-        T[] newArray = (T[]) new Object[fullSize];
+        T[] newArray = (T[]) new Object[fullSize * 2];
         int i = 0;
         int j = front;
         while (i < size) {
@@ -31,6 +30,7 @@ public class ArrayDeque<T> implements Deque<T> {
             i += 1;
             j = (j + 1) % fullSize;
         }
+        fullSize *= factor;
         array = newArray;
         front = 0;
         end = size;
@@ -79,6 +79,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         T value = array[front];
         array[front] = null;
         front = (front + 1) % 8;
@@ -91,6 +94,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T removeLast() {
+        if (size == 0) {
+            return null;
+        }
         end = (end - 1 + fullSize) % fullSize;
         T value = array[end];
         array[end] = null;
