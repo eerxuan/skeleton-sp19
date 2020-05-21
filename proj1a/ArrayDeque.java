@@ -22,7 +22,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     private void resize(double factor) {
-        T[] newArray = (T[]) new Object[fullSize * 2];
+        T[] newArray = (T[]) new Object[(int) (fullSize * factor)];
         int i = 0;
         int j = front;
         while (i < size) {
@@ -84,7 +84,7 @@ public class ArrayDeque<T> implements Deque<T> {
         }
         T value = array[front];
         array[front] = null;
-        front = (front + 1) % 8;
+        front = (front + 1) % fullSize;
         size -= 1;
         if ((fullSize > 16) && (size < fullSize / 4)) {
             resize(0.5);
