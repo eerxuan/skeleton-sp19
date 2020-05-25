@@ -31,7 +31,9 @@ public class TestPalindrome {
     public void testIsPalindromeOffByOne() {
         OffByOne offByOne = new OffByOne();
         assertEquals(true, palindrome.isPalindrome("flake", offByOne));
+        assertEquals(true, palindrome.isPalindrome("Flake", offByOne));
         assertEquals(true, palindrome.isPalindrome("f", offByOne));
+        assertEquals(true, palindrome.isPalindrome("F", offByOne));
         assertEquals(false, palindrome.isPalindrome("fff", offByOne));
         assertEquals(false, palindrome.isPalindrome("tees", offByOne));
         assertEquals(false, palindrome.isPalindrome(null, offByOne));
